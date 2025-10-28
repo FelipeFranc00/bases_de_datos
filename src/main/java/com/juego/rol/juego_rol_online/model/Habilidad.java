@@ -21,6 +21,17 @@ public class Habilidad {
     @OneToMany(mappedBy = "habilidad", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonajeHabilidad> personajeHabilidades;
 
+    public Habilidad(Long id, String nombre, String descripcion, int incrementoAtaque, int incrementoDefensa,
+            int incrementoEstamina, List<PersonajeHabilidad> personajeHabilidades) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.incrementoAtaque = incrementoAtaque;
+        this.incrementoDefensa = incrementoDefensa;
+        this.incrementoEstamina = incrementoEstamina;
+        this.personajeHabilidades = personajeHabilidades;
+    }
+
     public Long getId() {
         return id;
     }
@@ -76,6 +87,8 @@ public class Habilidad {
     public void setPersonajeHabilidades(List<PersonajeHabilidad> personajeHabilidades) {
         this.personajeHabilidades = personajeHabilidades;
     }
+
+    
 
     // Getters y Setters
     

@@ -18,6 +18,15 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Perfil perfil;
 
+
+    public Usuario(Long id, String username, String password, String email, Perfil perfil) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.perfil = perfil;
+    }
+
     public Long getId() {
         return id;
     }

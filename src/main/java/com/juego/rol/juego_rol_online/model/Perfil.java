@@ -23,6 +23,15 @@ public class Perfil {
     @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Personaje> personajes;
 
+
+    public Perfil(Long id, String biografia, String avatarUrl, Usuario usuario, List<Personaje> personajes) {
+        this.id = id;
+        this.biografia = biografia;
+        this.avatarUrl = avatarUrl;
+        this.usuario = usuario;
+        this.personajes = personajes;
+    }
+
     public Long getId() {
         return id;
     }

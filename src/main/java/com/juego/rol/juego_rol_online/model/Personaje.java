@@ -26,6 +26,19 @@ public class Personaje {
     @OneToMany(mappedBy = "personaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonajeHabilidad> personajeHabilidades;
 
+
+    public Personaje(Long id, String nombre, String descripcion, int ataqueBase, int defensaBase, int estaminaBase,
+            Perfil perfil, List<PersonajeHabilidad> personajeHabilidades) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.ataqueBase = ataqueBase;
+        this.defensaBase = defensaBase;
+        this.estaminaBase = estaminaBase;
+        this.perfil = perfil;
+        this.personajeHabilidades = personajeHabilidades;
+    }
+
     public Long getId() {
         return id;
     }

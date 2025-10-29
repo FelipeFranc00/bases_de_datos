@@ -3,7 +3,6 @@ package com.juego.rol.juego_rol_online.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -11,14 +10,17 @@ public class Usuario {
     private Long id;
 
     private String username;
-    private String password; // En un proyecto real, estaría hasheada
+    private String password;
     private String email;
 
-    // Relación 1:1 con Perfil (mappedBy: indica que Perfil es el dueño de la FK)
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Perfil perfil;
 
+    // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========
+    public Usuario() {
+    }
 
+    // ========== CONSTRUCTOR CON PARÁMETROS ==========
     public Usuario(Long id, String username, String password, String email, Perfil perfil) {
         this.id = id;
         this.username = username;
@@ -27,6 +29,7 @@ public class Usuario {
         this.perfil = perfil;
     }
 
+    // ========== GETTERS Y SETTERS ==========
     public Long getId() {
         return id;
     }
@@ -66,8 +69,4 @@ public class Usuario {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
-
-    // Getters y Setters
-
-    
 }

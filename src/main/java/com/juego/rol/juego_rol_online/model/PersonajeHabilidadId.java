@@ -10,26 +10,17 @@ public class PersonajeHabilidadId implements Serializable {
     private Long personajeId;
     private Long habilidadId;
 
-    // Es crucial implementar equals y hashCode para las claves compuestas
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PersonajeHabilidadId that = (PersonajeHabilidadId) o;
-        return Objects.equals(personajeId, that.personajeId) &&
-               Objects.equals(habilidadId, that.habilidadId);
+    // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========
+    public PersonajeHabilidadId() {
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(personajeId, habilidadId);
-    }
-
+    // ========== CONSTRUCTOR CON PARÁMETROS ==========
     public PersonajeHabilidadId(Long personajeId, Long habilidadId) {
         this.personajeId = personajeId;
         this.habilidadId = habilidadId;
     }
 
+    // ========== GETTERS Y SETTERS ==========
     public Long getPersonajeId() {
         return personajeId;
     }
@@ -46,6 +37,20 @@ public class PersonajeHabilidadId implements Serializable {
         this.habilidadId = habilidadId;
     }
 
-    // Getters, Setters y Constructores
-    
+    // ========== EQUALS Y HASHCODE (REQUERIDOS PARA CLAVES COMPUESTAS) ==========
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        PersonajeHabilidadId that = (PersonajeHabilidadId) o;
+        return Objects.equals(personajeId, that.personajeId) &&
+                Objects.equals(habilidadId, that.habilidadId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personajeId, habilidadId);
+    }
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "habilidades")
 public class Habilidad {
 
     @Id
@@ -17,10 +16,14 @@ public class Habilidad {
     private int incrementoDefensa;
     private int incrementoEstamina;
 
-    // Relación 1:M con la tabla de unión PersonajeHabilidad
     @OneToMany(mappedBy = "habilidad", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonajeHabilidad> personajeHabilidades;
 
+    // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========
+    public Habilidad() {
+    }
+
+    // ========== CONSTRUCTOR CON PARÁMETROS ==========
     public Habilidad(Long id, String nombre, String descripcion, int incrementoAtaque, int incrementoDefensa,
             int incrementoEstamina, List<PersonajeHabilidad> personajeHabilidades) {
         this.id = id;
@@ -32,6 +35,7 @@ public class Habilidad {
         this.personajeHabilidades = personajeHabilidades;
     }
 
+    // ========== GETTERS Y SETTERS ==========
     public Long getId() {
         return id;
     }
@@ -87,9 +91,4 @@ public class Habilidad {
     public void setPersonajeHabilidades(List<PersonajeHabilidad> personajeHabilidades) {
         this.personajeHabilidades = personajeHabilidades;
     }
-
-    
-
-    // Getters y Setters
-    
 }

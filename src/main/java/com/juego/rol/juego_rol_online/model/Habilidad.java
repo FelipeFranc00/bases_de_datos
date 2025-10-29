@@ -3,6 +3,8 @@ package com.juego.rol.juego_rol_online.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Habilidad {
 
@@ -17,6 +19,7 @@ public class Habilidad {
     private int incrementoEstamina;
 
     @OneToMany(mappedBy = "habilidad", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<PersonajeHabilidad> personajeHabilidades;
 
     // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========

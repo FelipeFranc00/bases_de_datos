@@ -2,8 +2,11 @@ package com.juego.rol.juego_rol_online.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({ "personajes" })
 public class Perfil {
 
     @Id
@@ -15,9 +18,11 @@ public class Perfil {
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Personaje> personajes;
 
     // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========

@@ -14,13 +14,11 @@ public class PersonajeHabilidad {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("personajeId")
     @JoinColumn(name = "personaje_id")
-    @JsonIgnore
     private Personaje personaje;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("habilidadId")
     @JoinColumn(name = "habilidad_id")
-    @JsonIgnore
     private Habilidad habilidad;
 
     // ========== CONSTRUCTOR VACÍO (REQUERIDO POR JPA) ==========

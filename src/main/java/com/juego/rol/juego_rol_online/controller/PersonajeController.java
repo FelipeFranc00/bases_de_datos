@@ -31,6 +31,20 @@ public class PersonajeController {
         return ResponseEntity.ok(personajes);
     }
 
+    @GetMapping("/personajes/{id}/habilidades")
+    public ResponseEntity<List<PersonajeHabilidad>> obtenerHabilidadesDePersonaje(@PathVariable Long id) {
+        Optional<Personaje> personajeOpt = personajeRepository.findById(id);
+
+        if (!personajeOpt.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Personaje personaje = personajeOpt.get();
+        List<PersonajeHabilidad> habilidades = personaje.getPersonajeHabilidades();
+
+        return ResponseEntity.ok(habilidades);
+    }
+
     // ========== GET /personajes/{id} - Obtener detalles de un personaje ==========
     @GetMapping("/{id}")
     public ResponseEntity<Personaje> obtenerPorId(@PathVariable Long id) {

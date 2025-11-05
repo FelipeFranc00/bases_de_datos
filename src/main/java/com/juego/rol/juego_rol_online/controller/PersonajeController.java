@@ -25,24 +25,11 @@ public class PersonajeController {
     @Autowired
     private PersonajeHabilidadRepository personajeHabilidadRepository;
 
+    // ========== GET /personajes - Listar todos los personajes ==========
     @GetMapping
     public ResponseEntity<List<Personaje>> listarTodos() {
         List<Personaje> personajes = personajeRepository.findAll();
         return ResponseEntity.ok(personajes);
-    }
-
-    @GetMapping("/personajes/{id}/habilidades")
-    public ResponseEntity<List<PersonajeHabilidad>> obtenerHabilidadesDePersonaje(@PathVariable Long id) {
-        Optional<Personaje> personajeOpt = personajeRepository.findById(id);
-
-        if (!personajeOpt.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Personaje personaje = personajeOpt.get();
-        List<PersonajeHabilidad> habilidades = personaje.getPersonajeHabilidades();
-
-        return ResponseEntity.ok(habilidades);
     }
 
     // ========== GET /personajes/{id} - Obtener detalles de un personaje ==========
@@ -55,6 +42,22 @@ public class PersonajeController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // ========== GET /personajes/{id}/habilidades - Obtener habilidades del
+    // personaje ==========
+    @GetMapping("/{id}/habilidades")
+    public ResponseEntity<List<PersonajeHabilidad>> obtenerHabilidadesDePersonaje(@PathVariable Long id) {
+        Optional<Personaje> personajeOpt = personajeRepository.findById(id);
+
+        if (!personajeOpt.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Personaje personaje = personajeOpt.get();
+        List<PersonajeHabilidad> habilidades = personaje.getPersonajeHabilidades();
+
+        return ResponseEntity.ok(habilidades);
     }
 
     // ========== POST /personajes - Crear un nuevo personaje ==========

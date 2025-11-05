@@ -22,27 +22,24 @@ public class RequestLoggingFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        // Crear el log de la petición
         RequestLog log = new RequestLog();
         log.setMethod(httpRequest.getMethod());
         log.setPath(httpRequest.getRequestURI());
         log.setIp(httpRequest.getRemoteAddr());
         log.setTimestamp(LocalDateTime.now());
 
-        // Guardar en la base de datos
         logRepository.save(log);
 
-        // Continuar con la cadena de filtros
         chain.doFilter(request, response);
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Inicialización si es necesaria
+
     }
 
     @Override
     public void destroy() {
-        // Limpieza si es necesaria
+
     }
 }

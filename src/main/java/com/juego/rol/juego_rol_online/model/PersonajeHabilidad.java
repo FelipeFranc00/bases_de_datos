@@ -1,7 +1,6 @@
 package com.juego.rol.juego_rol_online.model;
 
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class PersonajeHabilidad {

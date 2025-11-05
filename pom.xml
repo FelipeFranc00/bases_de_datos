@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<!-- Usando Java 24 -->
-		<java.version>24</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
